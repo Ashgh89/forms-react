@@ -12,7 +12,8 @@ const SignUpForm = () => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
-  const submitHandler = () => {
+  const submitHandler = (e) => {
+    e.preventDefault();
     console.log("...submitted");
   };
   return (
