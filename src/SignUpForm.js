@@ -7,10 +7,17 @@ const SignUpForm = () => {
     password: "",
   });
 
-  const changeHandler = (e) => {};
+  const changeHandler = (e) => {
+    // console.log(e.target.value);
+    setUserData({ ...userData, [e.target.name]: e.target.value });
+  };
+
+  const submitHandler = () => {
+    console.log("...submitted");
+  };
   return (
     <div>
-      <form>
+      <form onSubmit={submitHandler}>
         <div className="formControl">
           <label>Name</label>
           <input
@@ -32,7 +39,7 @@ const SignUpForm = () => {
         <div className="formControl">
           <label>Password</label>
           <input
-            type="text"
+            type="password"
             onChange={changeHandler}
             value={userData.password}
             name="password"
