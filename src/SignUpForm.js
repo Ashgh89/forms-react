@@ -1,5 +1,6 @@
 // import { useState } from "react";
 import { useFormik } from "formik";
+import * as Yup from "yup";
 
 // 1.
 const initialValues = {
@@ -14,19 +15,30 @@ const onSubmit = (values) => {
 };
 
 // 3.
-const validate = (values) => {
-  let errors = {};
-  if (!values.name) errors.name = "Name is Required";
-  if (!values.email) errors.email = "Email is Required";
-  if (!values.password) errors.password = "Password is Required";
-  return errors;
-};
+// const validate = (values) => {
+//   let errors = {};
+//   if (!values.name) errors.name = "Name is Required";
+//   if (!values.email) errors.email = "Email is Required";
+//   if (!values.password) errors.password = "Password is Required";
+//   return errors;
+// };
+
+// npm i yup and after that import * as Yup from "yup";
+// 3.
+const validationSchema = Yup.object({
+  name: Yup.string().required("Name is required"),
+  email: Yup.string()
+    .email("Invalid email format")
+    .required("Email is required"),
+  password: Yup.string().required("Password is required"),
+});
 
 const SignUpForm = () => {
   const formik = useFormik({
     initialValues,
     onSubmit,
-    validate,
+    // validate,
+    validationSchema,
   });
   console.log("errors", formik.errors);
 
@@ -42,6 +54,7 @@ const SignUpForm = () => {
             value={formik.values.name}
             name="name"
           />
+          {/* formik.touched.name -> when we click on input, we got error if it is empty */}
           {formik.errors.name && formik.touched.name && (
             <div className="error">{formik.errors.name}</div>
           )}
@@ -96,3 +109,5 @@ export default SignUpForm;
 //   },
 // });
 // after that in our onChange and value, we can use formik things
+
+// npm i yup and after that import * as Yup from "yup";
