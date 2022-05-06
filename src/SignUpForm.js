@@ -1,16 +1,26 @@
-import { useState } from "react";
+// import { useState } from "react";
+import { useFormik } from "formik";
 
 const SignUpForm = () => {
-  const [userData, setUserData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+  // const [formik.values, setformik.values] = useState({
+  //   name: "",
+  //   email: "",
+  //   password: "",
+  // });
 
-  const changeHandler = (e) => {
-    // console.log(e.target.value);
-    setUserData({ ...userData, [e.target.name]: e.target.value });
-  };
+  // const changeHandler = (e) => {
+  //   console.log(e.target.value);
+  //   setformik.values({ ...formik.values, [e.target.name]: e.target.value });
+  // };
+
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      password: "",
+    },
+  });
+  console.log(formik.values);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -23,8 +33,8 @@ const SignUpForm = () => {
           <label>Name</label>
           <input
             type="text"
-            onChange={changeHandler}
-            value={userData.name}
+            onChange={formik.handleChange}
+            value={formik.values.name}
             name="name"
           />
         </div>
@@ -32,8 +42,8 @@ const SignUpForm = () => {
           <label>Email</label>
           <input
             type="text"
-            onChange={changeHandler}
-            value={userData.email}
+            onChange={formik.handleChange}
+            value={formik.values.email}
             name="email"
           />
         </div>
@@ -41,8 +51,8 @@ const SignUpForm = () => {
           <label>Password</label>
           <input
             type="password"
-            onChange={changeHandler}
-            value={userData.password}
+            onChange={formik.handleChange}
+            value={formik.values.password}
             name="password"
           />
         </div>
@@ -52,3 +62,21 @@ const SignUpForm = () => {
   );
 };
 export default SignUpForm;
+
+// (so far without formik)
+// 1. managing state (done)
+// 2. handling form submission (done)
+// 3. validation - error message (not done)
+// All of this with -> we can do with formik
+
+// with formik
+// npm i formik and after that import { useFormik } from "formik";
+// after that we can delete our useState and changeHandler
+// after that const formik = useFormik({
+//   initialValues: {
+//     name: "",
+//     email: "",
+//     password: "",
+//   },
+// });
+// after that in our onChange and value, we can use formik things
