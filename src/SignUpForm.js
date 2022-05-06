@@ -49,9 +49,10 @@ const SignUpForm = () => {
           <label>Name</label>
           <input
             type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.name}
+            // onChange={formik.handleChange}
+            // onBlur={formik.handleBlur}
+            // value={formik.values.name}
+            {...formik.getFieldProps("name")}
             name="name"
           />
           {/* formik.touched.name -> when we click on input, we got error if it is empty */}
@@ -63,9 +64,10 @@ const SignUpForm = () => {
           <label>Email</label>
           <input
             type="text"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.email}
+            // onChange={formik.handleChange}
+            // onBlur={formik.handleBlur}
+            // value={formik.values.email}
+            {...formik.getFieldProps("email")}
             name="email"
           />
           {formik.errors.email && formik.touched.email && (
@@ -76,9 +78,10 @@ const SignUpForm = () => {
           <label>Password</label>
           <input
             type="password"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.password}
+            // onChange={formik.handleChange}
+            // onBlur={formik.handleBlur}
+            // value={formik.values.password}
+            {...formik.getFieldProps("password")}
             name="password"
           />
           {formik.errors.password && formik.touched.password && (
