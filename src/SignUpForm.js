@@ -26,7 +26,9 @@ const onSubmit = (values) => {
 // npm i yup and after that import * as Yup from "yup";
 // 3.
 const validationSchema = Yup.object({
-  name: Yup.string().required("Name is required"),
+  name: Yup.string()
+    .required("Name is required")
+    .min(6, "Name length is not valid"),
   email: Yup.string()
     .email("Invalid email format")
     .required("Email is required"),
@@ -37,7 +39,6 @@ const SignUpForm = () => {
   const formik = useFormik({
     initialValues,
     onSubmit,
-    // validate,
     validationSchema,
   });
   console.log("errors", formik.errors);
