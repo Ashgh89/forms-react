@@ -6,6 +6,7 @@ import * as Yup from "yup";
 const initialValues = {
   name: "",
   email: "",
+  phoneNumber: "",
   password: "",
 };
 
@@ -73,6 +74,20 @@ const SignUpForm = () => {
           />
           {formik.errors.email && formik.touched.email && (
             <div className="error">{formik.errors.email}</div>
+          )}
+        </div>
+        <div className="formControl">
+          <label>Phone</label>
+          <input
+            type="text"
+            // onChange={formik.handleChange}
+            // onBlur={formik.handleBlur}
+            // value={formik.values.email}
+            {...formik.getFieldProps("phoneNumber")}
+            name="phoneNumber"
+          />
+          {formik.errors.phoneNumber && formik.touched.phoneNumber && (
+            <div className="error">{formik.errors.phoneNumber}</div>
           )}
         </div>
         <div className="formControl">
