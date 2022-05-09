@@ -1,6 +1,7 @@
 // import { useState } from "react";
+import axios from "axios";
 import { useFormik } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as Yup from "yup";
 
 // 1.
@@ -52,6 +53,7 @@ const validationSchema = Yup.object({
 const SignUpForm = () => {
   const [formValues, setFormValues] = useState(null);
   const formik = useFormik({
+    // if formValues null then initialValues
     initialValues: formValues || initialValues,
     onSubmit,
     validationSchema,
@@ -60,6 +62,12 @@ const SignUpForm = () => {
   });
   console.log("errors", formik);
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/users/1")
+      .then((res) => setFormValues(res.data))
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <div>
       <form onSubmit={formik.handleSubmit}>
