@@ -1,5 +1,6 @@
 // import { useState } from "react";
 import { useFormik } from "formik";
+import { useState } from "react";
 import * as Yup from "yup";
 
 // 1.
@@ -49,11 +50,13 @@ const validationSchema = Yup.object({
 });
 
 const SignUpForm = () => {
+  const [formValues, setFormValues] = useState(null);
   const formik = useFormik({
-    initialValues,
+    initialValues: formValues || initialValues,
     onSubmit,
     validationSchema,
     validateOnMount: true,
+    enableReinitialize: true,
   });
   console.log("errors", formik);
 
@@ -153,6 +156,7 @@ const SignUpForm = () => {
           />
           <label htmlFor="1">Female</label>
         </div>
+
         <button type="submit" disabled={!formik.isValid}>
           submit
         </button>
