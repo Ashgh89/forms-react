@@ -3,6 +3,7 @@ import axios from "axios";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import * as Yup from "yup";
+import Input from "./components/common/Input";
 // 1.
 const initialValues = {
   name: "",
@@ -71,99 +72,21 @@ const SignUpForm = () => {
   return (
     <div>
       <form onSubmit={formik.handleSubmit}>
-        <div className="formControl">
-          {/* html="name and id name means if we click on name text it will focus as well" */}
-          <label htmlFor="name">Name</label>
-          <input
-            id="name"
-            type="text"
-            // onChange={formik.handleChange}
-            // onBlur={formik.handleBlur}
-            // value={formik.values.name}
-            {...formik.getFieldProps("name")}
-            name="name"
-          />
-          {/* formik.touched.name -> when we click on input, we got error if it is empty */}
-          {formik.errors.name && formik.touched.name && (
-            <div className="error">{formik.errors.name}</div>
-          )}
-        </div>
-        <div className="formControl">
-          <label>Email</label>
-          <input
-            type="text"
-            // onChange={formik.handleChange}
-            // onBlur={formik.handleBlur}
-            // value={formik.values.email}
-            {...formik.getFieldProps("email")}
-            name="email"
-          />
-          {formik.errors.email && formik.touched.email && (
-            <div className="error">{formik.errors.email}</div>
-          )}
-        </div>
-        <div className="formControl">
-          <label>Phone</label>
-          <input
-            type="text"
-            // onChange={formik.handleChange}
-            // onBlur={formik.handleBlur}
-            // value={formik.values.email}
-            {...formik.getFieldProps("phoneNumber")}
-            name="phoneNumber"
-          />
-          {formik.errors.phoneNumber && formik.touched.phoneNumber && (
-            <div className="error">{formik.errors.phoneNumber}</div>
-          )}
-        </div>
-        <div className="formControl">
-          <label>Password</label>
-          <input
-            type="password"
-            // onChange={formik.handleChange}
-            // onBlur={formik.handleBlur}
-            // value={formik.values.password}
-            {...formik.getFieldProps("password")}
-            name="password"
-          />
-          {formik.errors.password && formik.touched.password && (
-            <div className="error">{formik.errors.password}</div>
-          )}
-        </div>
-        <div className="formControl">
-          <label>Password Confirmation</label>
-          <input
-            type="password"
-            // onChange={formik.handleChange}
-            // onBlur={formik.handleBlur}
-            // value={formik.values.password}
-            {...formik.getFieldProps("passwordConfirm")}
-            name="passwordConfirm"
-          />
-          {formik.errors.passwordConfirm && formik.touched.passwordConfirm && (
-            <div className="error">{formik.errors.passwordConfirm}</div>
-          )}
-        </div>
-        <div className="formControl">
-          <input
-            type="radio"
-            id="0"
-            name="gender"
-            value="0"
-            onChange={formik.handleChange}
-            checked={formik.values.gender === "0"}
-          />
-          <label htmlFor="0">Male</label>
-          <input
-            type="radio"
-            id="1"
-            name="gender"
-            value="1"
-            onChange={formik.handleChange}
-            checked={formik.values.gender === "1"}
-          />
-          <label htmlFor="1">Female</label>
-        </div>
+        <Input formik={formik} name="name" label="Name" />
+        <Input formik={formik} name="email" label="Email" />
+        <Input formik={formik} name="phoneNumber" label="Phone" />
+        <Input
+          formik={formik}
+          name="password"
+          label="Password"
+          type="password"
+        />
+        <Input
+          formik={formik}
+          name="passwordConfirm"
+          label="Password Confirmation"
+          type="password"
+        />
 
         <button type="submit" disabled={!formik.isValid}>
           submit
