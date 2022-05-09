@@ -3,6 +3,7 @@ import axios from "axios";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import * as Yup from "yup";
+import CheckboxInput from "./CheckboxInput";
 import Input from "./components/common/Input";
 import RadioInput from "./components/common/RadioInput";
 import SelectComponent from "./components/common/SelectComponent";
@@ -18,7 +19,10 @@ const selectOptions = [
   { label: "Germany", value: "GER" },
   { label: "USA", value: "US" },
 ];
-
+const checkBoxOptions = [
+  { label: "React.js", value: "React.js" },
+  { label: "Vue.js", value: "Vue.js" },
+];
 // 1.
 const initialValues = {
   name: "",
@@ -28,6 +32,8 @@ const initialValues = {
   password: "",
   gender: "",
   nationality: "",
+  intrests: [], // ["React.js OR Vue.js"]
+  terms: false,
 };
 
 // 2.
@@ -65,6 +71,11 @@ const validationSchema = Yup.object({
     .oneOf([Yup.ref("password"), null], "Password must match"),
   gender: Yup.string().required("Gender is required"),
   nationality: Yup.string().required("select nationality"),
+  intrests: Yup.array().min(1).required("at least select one experties"),
+  terms: Yup.boolean()
+    // just search for it and u dont need auswändig machen
+    .required("The terms and conditions must be accepted.")
+    .oneOf([true], "The terms and conditions must be accepted."),
 });
 
 const SignUpForm = () => {
@@ -108,8 +119,13 @@ const SignUpForm = () => {
         <RadioInput formik={formik} radioOptions={radioOptions} name="gender" />
         <SelectComponent
           selectOptions={selectOptions}
-          name="nationality"
           formik={formik}
+          name="nationality"
+        />
+        <CheckboxInput
+          formik={formik}
+          checkBoxOptions={checkBoxOptions}
+          name="intrests"
         />
         <button type="submit" disabled={!formik.isValid}>
           submit
