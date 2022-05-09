@@ -3,7 +3,6 @@ import axios from "axios";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import * as Yup from "yup";
-
 // 1.
 const initialValues = {
   name: "",
@@ -64,6 +63,7 @@ const SignUpForm = () => {
 
   useEffect(() => {
     axios
+      //this id 1 is not gonna be 1 always, it can be 2,3 or whatever, so we use Params
       .get("http://localhost:3001/users/1")
       .then((res) => setFormValues(res.data))
       .catch((err) => console.log(err));
