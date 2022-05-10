@@ -38,7 +38,10 @@ input[type="password"] {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-
+.formControl select {
+  width: 400px;
+  padding: 3px 6px;
+}
 .formControl {
   margin-bottom: 20px;
 }

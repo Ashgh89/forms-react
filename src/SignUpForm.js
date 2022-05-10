@@ -88,7 +88,7 @@ const SignUpForm = () => {
     validateOnMount: true,
     enableReinitialize: true,
   });
-  console.log("errors", formik);
+  console.log("errors", formik.values);
 
   useEffect(() => {
     axios
@@ -127,6 +127,19 @@ const SignUpForm = () => {
           checkBoxOptions={checkBoxOptions}
           name="intrests"
         />
+        <input
+          type="checkbox"
+          id="terms"
+          name="terms"
+          value={true}
+          onChange={formik.handleChange}
+          checked={formik.values.terms}
+        />
+        <label htmlFor="terms">Terms and Conditions</label>
+
+        {formik.errors.terms && formik.touched.terms && (
+          <div className="error">{formik.errors.terms}</div>
+        )}
         <button type="submit" disabled={!formik.isValid}>
           submit
         </button>
