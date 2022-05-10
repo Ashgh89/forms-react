@@ -9,8 +9,10 @@
       "passwordConfirm": "123",
       "gender": "0",
       "nationality": "GER",
-      "intrests": ["React.js"],
-      "terms": false
+      "intrests": [
+        "React.js"
+      ],
+      "terms": true
     }
   ]
 }

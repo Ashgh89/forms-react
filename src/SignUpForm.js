@@ -38,7 +38,11 @@ const initialValues = {
 
 // 2.
 const onSubmit = (values) => {
-  console.log(values);
+  // console.log({ ...values, newData: "28 March 1989" });
+  axios
+    .post("http://localhost:3001/users", values)
+    .then((res) => console.log(res.data))
+    .catch((err) => console.log(err));
 };
 
 // 3.
