@@ -8,6 +8,8 @@ const Input = ({ label, name, formik, type = "text" }) => {
         type={type}
         // onChange={formik.handleChange}
         // onBlur={formik.handleBlur}
+        // onBlur={formik.handleBlur}
+
         // value={formik.values.name}
         {...formik.getFieldProps(name)}
         name={name}
